@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 require "rails_helper"
+=======
+require 'rails_helper'
+>>>>>>> Find space
 include GeneralHelper
 
 RSpec.describe Search::SpacesController, type: :controller do
@@ -17,8 +21,13 @@ RSpec.describe Search::SpacesController, type: :controller do
       let!(:address) {FactoryGirl.create :address}
       let!(:venue) {stub_model(Venue, name: "test", description: "test",
         address: address)}
+<<<<<<< HEAD
       let(:addresses) {address}
       let(:hash) {mark_to_maps(addresses)}
+=======
+      let!(:addresses) {address}
+      let!(:hash) {mark_to_maps(addresses)}
+>>>>>>> Find space
 
       it "stubs :latitude" do
         expect(address.latitude).not_to be_nil
