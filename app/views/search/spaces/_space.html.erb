@@ -1,0 +1,36 @@
+<div class="col-md-6">
+  <div class="widget">
+    <div class="widget-simple">
+      <a href="javascript:void(0)" class="widget-icon pull-right themed-background">
+        <i class="gi gi-picture"></i>
+      </a>
+      <h4 class="widget-content">
+        <a href="javascript:void(0)">
+          <strong><%= space.space_type.humanize %></strong>
+        </a>
+        <small>in <a href="javascript:void(0)"><%= space.venue.name %></a>
+        </small>
+      </h4>
+    </div>
+    <div class="widget-extra-full themed-background-dark">
+      <div id="widget-carousel-<%= space.id %>"
+        class="carousel slide remove-margin">
+        <div class="carousel-inner">
+          <% space.images.each do |image| %>
+            <div class="item <%= first_active space.images, image %>">
+              <%= image_tag image.image_url, alt: image.title %>
+            </div>
+          <% end %>
+        </div>
+        <a class="left carousel-control"
+          href="#widget-carousel-<%= space.id %>"  data-slide="prev">
+            <span><i class="fa fa-chevron-left"></i></span>
+        </a>
+        <a class="right carousel-control"
+          href="#widget-carousel-<%= space.id %>" data-slide="next">
+            <span><i class="fa fa-chevron-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

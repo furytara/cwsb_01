@@ -1,0 +1,2 @@
+module Search::SpacesHelper
+end

@@ -12,6 +12,10 @@ gem "jquery-turbolinks"
 gem "bootstrap-sass",          "3.2.0.0"
 gem "jbuilder", "~> 2.5"
 gem "devise"
+gem "gmaps4rails"
+gem "geocoder"
+gem "factory_girl_rails"
+gem "faker"
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -29,7 +33,6 @@ group :development do
 end
 
 group :test do
-  gem "faker"
   gem "database_cleaner"
   gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers"
   gem "simplecov", require: false

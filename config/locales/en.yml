@@ -44,3 +44,8 @@ en:
     venues: "Venues"
     booking: "Booking"
     statistics: "Statistics"
+  search:
+    place_holder: "Enter location"
+    spaces:
+        index:
+            no_result: "Sorry, there are no spaces matching your criteria. Try clearing some filters above, or check out the alternatives below."
