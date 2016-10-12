@@ -1,0 +1,11 @@
+<% if @hash.present? %>
+  markers = handler.addMarkers(<%=raw @hash.to_json %>)
+  handler.bounds.extendWith(markers)
+  handler.fitMapToBounds()
+<% else %>
+  centre_pos = {"lat": latitude, "lng": longitude}
+  handler.map.centerOn(centre_pos);
+  handler.getMap().setZoom(16);
+<% end %>
+$("#search-space-result").html("<%= escape_javascript(render 'search_result') %>")
+

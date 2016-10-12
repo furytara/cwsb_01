@@ -47,5 +47,9 @@ en:
   search:
     place_holder: "Enter location"
     spaces:
-        index:
-            no_result: "Sorry, there are no spaces matching your criteria. Try clearing some filters above, or check out the alternatives below."
+      index:
+        maps: "Maps"
+        find_space: "Find space"
+  errors:
+    spaces:
+      no_result: "No spaces found"

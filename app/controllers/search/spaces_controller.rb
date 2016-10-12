@@ -6,6 +6,10 @@ class Search::SpacesController < ApplicationController
       marker.lng address.longitude
       marker.infowindow address.venue.name
     end
+    respond_to do |format| 
+      format.html
+      format.js
+    end
   end
 
   def show

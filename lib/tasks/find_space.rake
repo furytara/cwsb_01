@@ -1,10 +1,8 @@
 namespace :find_space do
   desc "TODO"
   task :create_addresses => :environment do
-    address1 = Address.create!
-      details: "Parkson Da Nang, Hung Vuong, Vinh Trung, Da Nang, Vietnam"
-    address2 = Address.create!
-      details: "Hotel Novotel Danang Premier Han River, Da Nang, Vietnam"
+    address1 = Address.create! details: "Parkson Da Nang, Hung Vuong, Vinh Trung, Da Nang, Vietnam"
+    address2 = Address.create! details: "Hotel Novotel Danang Premier Han River, Da Nang, Vietnam"
 
     venue1 = Venue.new name: Faker::Name.name,
       description: Faker::Lorem.sentence, address: address1

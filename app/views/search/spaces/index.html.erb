@@ -5,35 +5,27 @@
 <div class="row">
   <div class="col-md-6" style="border:1">
     <div class="block-title">
-      <h2><strong>Maps</strong></h2>
+      <h2><strong><%= t "maps" %></strong></h2>
     </div>
-    <div>
+    <div id="map-container">
       <div id="map"></div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="block-title">
-      <h2><strong>Find space</strong></h2>
+      <h2><strong><%= t "find_space" %></strong></h2>
     </div>
     <div class="block-full">
       <div class="widget">
-        <%= form_tag search_spaces_path, method: :get,
+        <%= form_tag search_spaces_path, method: :get, remote: true,
           id: "search-space-form" do %>
           <%= text_field_tag  :search, params[:search],
             placeholder: t("search.place_holder"), class: "controls",
             id: "pac-input" %>
         <% end %>
       </div>
-      <div class="row">
-        <% if @addresses.any? %>
-          <% @addresses.each do |address| %>
-            <%= render address.spaces %>
-          <% end %>
-        <% else %>
-          <div class="col-sm-8 col-sm-offset-2 text-center">
-            <h3><%= t ".no_result" %></h3>
-          </div>
-        <% end %>
+      <div class="row" id="search-space-result">
+        <%= render "search_result" %>
       </div>
     </div>
   </div>
@@ -41,6 +33,17 @@
 <script type="text/javascript">
   $(function(){
     $(window).load(function(){
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      var markers = [];
+      latitude = 0;
+      longitude = 0;
+      
+      searchBox.addListener('places_changed', function() {
+        form = $('#search-space-form');
+        form.submit();
+      });
+
       handler = Gmaps.build('Google');
       handler.buildMap({
           provider: {
@@ -53,59 +56,26 @@
         },
         function(){
           <% if @hash.present? %>
-            console.log("get to add markers1");
             markers = handler.addMarkers(<%=raw @hash.to_json %>);
             handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
           <% else %>
-            centre_pos = {"lat": 16.0669, "lng": 108.212}
-            handler.map.centerOn(centre_pos);
-            handler.getMap().setZoom(16);
-            //initMap();
+            getUserLocationByService();
           <% end %>
         }
       );
-      var input = document.getElementById('pac-input');
-      var searchBox = new google.maps.places.SearchBox(input);
 
-      var markers = [];
-      searchBox.addListener('places_changed', function() {
-        form = $('#search-space-form');
-        form.submit();
-      });
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+      var serviceUrl = "http://freegeoip.net/json/";
+      function getUserLocationByService(){
+        $.ajax({
+          url: serviceUrl
+        }).then(function(data) {
+          latitude = data.latitude;
+          longitude = data.longitude;
+          centre_pos = {"lat": latitude, "lng": longitude}
+          handler.map.centerOn(centre_pos);
+          handler.getMap().setZoom(16);
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
       }
     });
   });
