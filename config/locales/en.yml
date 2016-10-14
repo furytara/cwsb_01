@@ -34,6 +34,15 @@ en:
   flash:
     success_message: "successfully!"
     danger_message: "error"
+  from: "From"
+  to: "To"
+  mon: "MON"
+  tue: "TUE"
+  wed: "WED"
+  thu: "THU"
+  fri: "FRI"
+  sat: "SAT"
+  sun: "SUN"
   layout:
     base_title: "CWBS"
     site_name: "CWBS"
@@ -140,6 +149,18 @@ en:
       index:
         maps: "Maps"
         find_space: "Find space"
+      show:
+        contact: "Contact"
+        the_space: "The space"
+        the_venue: "The venue"
+        price: "Price"
+        amenities: "Amenities"
+        full_venue_profile: "Full venue profile"
+        open_hours: "Open hours"
+        booking: "Booking"
+        date: "Date"
+        duration: "Daration"
+        book_now: "Book now"
   errors:
     spaces:
       no_result: "No spaces found"

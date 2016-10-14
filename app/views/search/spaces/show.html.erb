@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-md-6">
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="block">
+      <div class="content-header">
+        <div class="header-section">
+          <h1>
+            Hot Desk<br><small>RAPTURE COFFEE Coworking Space</small>
+          </h1>
+        </div>
+      </div>
+      <div id="example-carousel" class="carousel slide">
+        <ol class="carousel-indicators">
+          <li data-target="#example-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#example-carousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="active item">
+            <%=  image_tag "spaces/space4.jpg" %>
+            <div class="carousel-caption">
+              <p>..</p>
+            </div>
+          </div>
+          <div class="item">
+            <%=  image_tag "spaces/space3.jpg" %>
+            <div class="carousel-caption">
+              <p>..</p>
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#example-carousel" data-slide="prev">
+          <span><i class="fa fa-chevron-left"></i></span>
+        </a>
+        <a class="right carousel-control" href="#example-carousel" data-slide="next">
+          <span><i class="fa fa-chevron-right"></i></span>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-center">
+          <%= link_to "javascript:" do %>
+            <%= image_tag "placeholders/avatars/avatar2.png", alt: "Avatar", class: "img-circle" %>
+          <% end %>
+          <p>
+            <%= link_to t(".contact"), "javascript:" %>
+          </p>
+        </div>
+        <div class="col-md-10">
+          <div class="media-body">
+            <p class="push-bit">
+              <strong>
+                <%= t ".the_space" %>
+              </strong>
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti..</p>
+          </div>
+        </div>
+      </div>
+      <div class="media-body line-break-block">
+        <p class="push-bit">
+          <strong><%= t ".price" %></strong>
+        </p>
+        <p>
+          <span class="label label-success">60000 VND/ day</span>
+          <span class="label label-success">6000000 VND/ month</span>
+        </p>
+      </div>
+      <div class="media-body line-break-block">
+        <p class="push-bit">
+          <strong><%= t ".the_venue" %></strong>
+        </p>
+        <p>Rapture Coffee is a coffee shop for working. We create a good environment for freelancers or people who want to stay away from their boring offices.
+        We have high speed wifi, free printer, a kindle e-reader, lockers, well tasted drinks and interesting books. Everything is to support a good space for effective working.</p>
+        <p>
+          <h4 class="list-group-item-heading remove-margin"><i class="fa fa-bolt fa-fw"></i>
+            2A lane 34 Hung Vuong Street , Hai Chau, Da Nang
+          </h4>
+        </p>
+        <p>
+          <%= link_to "javascript:", class: "btn btn-xs btn-primary" do %>
+            <i class="fa fa-file"></i> <%= t "full_venue_profile" %>
+          <% end %>
+        </p>
+      </div>
+      <div class="media-body line-break-block">
+        <p class="push-bit">
+          <strong><%= t ".open_hours" %></strong>
+        </p>
+        <p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th><%= t "mon" %></th>
+                <th><%= t "tue" %></th>
+                <th><%= t "wed" %></th>
+                <th><%= t "thu" %></th>
+                <th class="themed-color"><%= t "fri" %></th>
+                <th><%= t "sat" %></th>
+                <th><%= t "sun" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= t "from" %></td>
+                <td>6:30 am</td>
+                <td>6:30 am</td>
+                <td>6:30 am</td>
+                <td>6:30 am</td>
+                <td class="themed-color">6:30 am</td>
+                <td>6:30 am</td>
+                <td>6:30 am</td>
+              </tr>
+              <tr>
+                <td><%= t "to" %></td>
+                <td>11:00 pm</td>
+                <td>11:00 pm</td>
+                <td>11:00 pm</td>
+                <td>11:00 pm</td>
+                <td class="themed-color">11:00 pm</td>
+                <td>11:00 pm</td>
+                <td>11:00 pm</td>
+              </tr>
+            </tbody>
+          </table>
+        </p>
+      </div>
+      <div class="media-body line-break-block">
+        <p class="push-bit">
+          <strong><%= t ".amenities" %></strong>
+        </p>
+        <div class="col-md-4 col-sm-6">
+          WiFi
+        </div>
+        <div class="col-md-4 col-sm-6">
+          24/7 Option
+        </div>
+        <div class="col-md-4 col-sm-6">
+          Lockers
+        </div>
+        <div class="col-md-4 col-sm-6">
+          Pets Allowed
+        </div>
+        <div class="col-md-4 col-sm-6">
+          Meeting Rooms
+        </div>
+      </div>
+      <div class="media-body footer-section line-break-block">
+        <p class="push-bit">
+          <strong><%= t ".booking" %></strong>
+        </p>
+        <div class="form-group">
+          <div class="col-md-4">
+            <p><strong><%= t ".date" %></strong></p>
+          </div>
+          <div class="col-md-8">
+            <p><strong><%= t ".duration" %></strong></p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" id="" name="" class="form-control input-datepicker input-sm" data-date-format="dd-mm-yyyy">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <input type="number" id="" name="" class="form-control input-sm">
+          </div>
+          <div class="col-md-2">
+            <select class="form-control col-md-4 input-sm">
+              <option value="0">day</option>
+              <option value="0">week</option>
+              <option value="0">month</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-sm btn-primary">
+              <%= t "book_now" %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

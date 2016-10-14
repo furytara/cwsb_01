@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 require "rails_helper"
-=======
-require 'rails_helper'
->>>>>>> Find space
 
 RSpec.describe "search/spaces/index.html.erb", type: :view do
   context "expected elements when init search" do

@@ -9,4 +9,8 @@ class Search::SpacesController < ApplicationController
       format.js
     end
   end
+
+  def show
+    @space = Space.first
+  end
 end
