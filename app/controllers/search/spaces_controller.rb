@@ -4,7 +4,12 @@ class Search::SpacesController < ApplicationController
 
   def index
     @addresses = Address.near params[:search], Settings.radius_search_in_miles
-    @hash = mark_to_maps @addresses
+    if @addresses.present?
+      @hash = mark_to_maps @addresses
+    else
+      @location = Geocoder.search(params[:search])
+    end
+
     respond_to do |format|
       format.html
       format.js

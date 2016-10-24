@@ -1,12 +1,12 @@
 <div id="sidebar">
   <div id="sidebar-scroll">
     <div class="sidebar-content">
-      <a href="javascript:" class="sidebar-brand">
+      <%= link_to root_url, class: "sidebar-brand" do %>
         <i class="gi gi-flash"></i>
         <span class="sidebar-nav-mini-hide">
           <strong><%= t "layout.site_name" %></strong>
         </span>
-      </a>
+      <% end %>
       <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
         <div class="sidebar-user-avatar">
           <a href="javascript:">
@@ -29,11 +29,11 @@
       </div>
       <ul class="sidebar-nav">
         <li>
-          <a href="javascript:" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i>
+          <%= link_to search_spaces_url do %>
             <span class="sidebar-nav-mini-hide">
-            <%= t "layout.search_your_space" %>
+              <%= t "layout.search_for_space" %>
             </span>
-          </a>
+          <% end %>
         </li>
         <li>
           <a href="javascript:" class="sidebar-nav-menu">
@@ -43,7 +43,7 @@
           </a>
           <ul>
             <li>
-              <a href="javascript:"><%= t "layout.my_spaces" %></a>
+              <%= link_to t("layout.my_spaces"), venues_url %>
             </li>
             <li>
               <a href="javascript:"><%= t "layout.booking_history" %></a>

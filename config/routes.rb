@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'static_pages/index'
+
   namespace :search do
     resources :spaces
     root to: "spaces#index"
   end
 
-  root "venues#index"
+  root "static_pages#index"
   devise_for :admins
   devise_for :users
 
@@ -15,4 +17,6 @@ Rails.application.routes.draw do
       resources :service_charges
     end
   end
+
+  resources :static_pages
 end

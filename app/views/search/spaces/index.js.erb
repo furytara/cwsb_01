@@ -1,9 +1,13 @@
 <% if @hash.present? %>
-  markers = handler.addMarkers(<%=raw @hash.to_json %>)
+  markers = handler.addMarkers(<%= raw @hash.to_json %>)
   handler.bounds.extendWith(markers)
   handler.fitMapToBounds()
 <% else %>
-  centre_pos = {'lat': latitude, 'lng': longitude}
+  <% if @location.present? %>
+    centre_pos = {'lat': <%= @location[0].latitude %>, 'lng': <%= @location[0].longitude %>}
+  <% else %>
+    centre_pos = {'lat': latitude, 'lng': longitude}
+  <% end %>
   handler.map.centerOn(centre_pos);
   handler.getMap().setZoom(16);
 <% end %>

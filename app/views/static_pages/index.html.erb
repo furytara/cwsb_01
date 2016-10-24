@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= full_title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all",
+      "data-turbolinks-track": true %>
+    <%= javascript_include_tag "application",
+      "data-turbolinks-track": true %>
+    <%= javascript_include_tag "static_pages.js" %>
+    <%= render "layouts/shared/shim" %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiNNIpP8sLtpWlcwLuv_ZqA1NQnbtm_Dk&libraries=places"></script>
+  </head>
+  <body>
+    <div id="page-container">
+      <header>
+        <div class="container">
+          <%= link_to search_root_url, class: "site-logo" do %>
+            <i class="gi gi-flash"></i>
+            <strong><%= t "home.coworking_space" %></strong>
+            <%= t "home.sharing" %>
+          <% end %>
+          <nav>
+            <ul class="site-nav">
+              <li class="active">
+                <%= link_to t("home.name"), search_root_url %>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="media-container">
+        <section class="site-section site-section-light site-section-top">
+          <div class="container text-center">
+            <h1 class="animation-slideDown">
+              <strong><%= t ".site_des_line1" %></strong>
+            </h1>
+            <h2 class="h3 animation-slideUp hidden-xs">
+              <%= t ".site_des_line2" %>
+            </h2>
+          </div>
+        </section>
+        <%= image_tag "home/store_home.jpg", class: "media-image animation-pulseSlow" %>
+      </div>
+      <section class="site-content site-section">
+        <div class="container">
+          <div class="site-block">
+            <%= form_tag search_spaces_path, method: :get,
+              id: "search-space-form" do %>
+              <div class="input-group input-group-lg" id="search-panel-home">
+              <%= text_field_tag :search, params[:search],
+                placeholder: t("search.place_holder"),
+                class: "form-control", id: "pac-input-home" %>
+                <div class="input-group-btn">
+                  <%= button_tag class: "btn btn-primary" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% unless user_signed_in? %>
+            <div class="site-block text-center">
+              <%= link_to new_user_session_url,
+                class: "btn btn-lg btn-success" do %>
+                  <i class="fa fa-smile-o"></i> <%= t "layout.login" %>
+              <% end %>
+              <%= link_to new_user_registration_url,
+                class: "btn btn-lg btn-primary" do %>
+                  <i class="fa fa-plus"></i> <%= t "layout.signup" %>
+              <% end %>
+            </div>
+          <% end %>
+          <hr>
+        </div>
+      </section>
+      <div id="home-carousel" class="carousel carousel-home slide" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner">
+          <div class="active item">
+            <section class="site-section site-section-light site-section-top themed-background-default">
+              <div class="container">
+                <h1 class="text-center animation-slideDown hidden-xs">
+                  <strong><%= t ".carousel1_line1" %></strong>
+                </h1>
+                <h2 class="text-center animation-slideUp push hidden-xs">
+                  <%= t ".carousel1_line2" %>
+                </h2>
+                <p class="text-center animation-fadeIn">
+                  <%= image_tag "home/home_desk.jpg" %>
+                </p>
+              </div>
+            </section>
+          </div>
+          <div class="item">
+            <section class="site-section site-section-light site-section-top themed-background-fire">
+              <div class="container">
+                <h1 class="text-center animation-fadeIn360 hidden-xs">
+                  <strong><%= t ".carousel2_line1" %></strong>
+                </h1>
+                <h2 class="text-center animation-fadeIn360 push hidden-xs">
+                  <%= t ".carousel2_line2" %>
+                </h2>
+                <p class="text-center animation-fadeInLeft">
+                  <%= image_tag "home/home_woman.jpg" %>
+                </p>
+              </div>
+            </section>
+          </div>
+          <div class="item">
+            <section class="site-section site-section-light site-section-top themed-background-amethyst">
+              <div class="container">
+                <h1 class="text-center animation-hatch hidden-xs">
+                  <strong><%= t ".carousel3_line1" %></strong>
+                </h1>
+                <h2 class="text-center animation-hatch push hidden-xs">
+                    <%= t ".carousel3_line2" %>
+                </h2>
+                <p class="text-center animation-hatch">
+                  <%= image_tag "home/meeting_room.jpg" %>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#home-carousel" data-slide="prev">
+          <span>
+            <i class="fa fa-chevron-left"></i>
+          </span>
+        </a>
+        <a class="right carousel-control" href="#home-carousel" data-slide="next">
+          <span>
+            <i class="fa fa-chevron-right"></i>
+          </span>
+        </a>
+      </div>
+      <section class="site-content site-section">
+        <div class="container">
+          <div id="testimonials-carousel" class="carousel slide carousel-html" data-ride="carousel" data-interval="4000">
+            <ol class="carousel-indicators">
+              <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+              <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+              <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner text-center">
+              <div class="active item">
+                <p>
+                  <%= image_tag "placeholders/avatars/anhtrung.jpg",
+                    class: "img-circle" %>
+                </p>
+                <blockquote class="no-symbol">
+                  <p><%= t ".quote1" %></p>
+                  <footer><strong><%= t ".name1" %></strong></footer>
+                </blockquote>
+              </div>
+              <div class="item">
+                <p>
+                  <%= image_tag "placeholders/avatars/anhdieu.jpg",
+                    class: "img-circle" %>
+                </p>
+                <blockquote class="no-symbol">
+                  <p><%= t ".quote2" %></p>
+                  <footer><strong><%= t ".name2" %></strong></footer>
+                </blockquote>
+              </div>
+              <div class="item">
+                <p>
+                  <%= image_tag "placeholders/avatars/anhtrananh.jpg",
+                    class: "img-circle" %>
+                </p>
+                <blockquote class="no-symbol">
+                  <p><%= t ".quote3" %></p>
+                  <footer><strong><%= t ".name3" %></strong></footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="site-footer site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <h4 class="footer-heading"><%= t "home.about_us" %></h4>
+              <ul class="footer-nav list-inline">
+                <li><a href="javascript:"><%= t "home.company" %></a></li>
+                <li><a href="javascript:"><%= t "home.contact" %></a></li>
+                <li><a href="javascript:"><%= t "home.support" %></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <h4 class="footer-heading"><%= t "home.legal" %></h4>
+              <ul class="footer-nav list-inline">
+                <li><a href="javascript:"><%= t "home.licensing" %></a></li>
+                <li><a href="javascript:"><%= t "home.privacy_policy" %></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <h4 class="footer-heading"><%= t "home.follow_us" %></h4>
+              <ul class="footer-nav footer-nav-social list-inline">
+                <li><a href="javascript:"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="javascript:"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="javascript:"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="javascript:"><i class="fa fa-dribbble"></i></a></li>
+                <li><a href="javascript:"><i class="fa fa-rss"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <h4 class="footer-heading"><span id="year-copy"></span>
+                <%= link_to t("layout.company_name"), "javascript:" %>
+              </h4>
+              <ul class="footer-nav list-inline">
+                <li>
+                  <%= t "layout.created" %>
+                  <i class="fa fa-heart text-danger"></i>
+                  <%= t "layout.by_team" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <a href="#" id="to-top"><i class="fa fa-angle-up"></i></a>
+  </body>
+</html>
