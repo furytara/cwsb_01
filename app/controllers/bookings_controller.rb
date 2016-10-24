@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   load_resource
 
   def index
-    @bookings = Booking.current_order(current_user)
+    @orders = Booking.current_order(current_user)
       .group_by{|booking| booking.space.venue}
   end
 

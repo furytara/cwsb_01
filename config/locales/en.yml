@@ -35,6 +35,7 @@ en:
   detail: "DETAIL"
   vnd_slash: "VND/"
   book_now: "Book now"
+  delete: "Delete"
   flash:
     success_message: "successfully!"
     danger_message: "error"
@@ -49,6 +50,7 @@ en:
   time:
     formats:
       time_session: "%I:%M %p"
+      time_word: "%a, %b %-d, %Y"
   layout:
     base_title: "CWBS"
     site_name: "CWBS"
@@ -198,6 +200,7 @@ en:
       your_bookings: "Your Bookings"
       total_due: "TOTAL DUE"
       request: "Request"
+      confirm_delete: "Remove this booking?"
   search:
     place_holder: "Enter location"
     spaces:

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :bookings
+  resources :orders
   resources :venues do
     resources :venue_amenities
     resources :amenities do

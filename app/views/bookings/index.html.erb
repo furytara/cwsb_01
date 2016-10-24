@@ -5,64 +5,90 @@
     </h1>
   </div>
 </div>
-<div class="block full">
-  <div class="block-title">
-    <div class="block-options pull-right">
-      <a href="javascript:" class="btn btn-sm btn-alt btn-default" data-toggle="tooltip" title="Delete invoice"><i class="fa fa-times"></i></a>
-    </div>
-    <h2><strong>Big C</strong></h2>
-  </div>
-    <div class="row block-section">
-      <div class="col-sm-12">
-        <h4>Parkson Da Nang, Hung Vuong, Vinh Trung, Da Nang, Vietnam</h4>
-        <address>
-          <i class="fa fa-phone"></i> (000) 000-0000<br>
-          <i class="fa fa-envelope-o"></i> <a href="javascript:">example@example.com</a>
-        </address>
+
+<% @orders.each do |order| %>
+  <%= form_for Order.new do |f| %>
+    <div class="block full">
+      <div class="block-title">
+        <div class="block-options pull-right">
+          <a href="javascript:" class="btn btn-sm btn-alt btn-default" data-toggle="tooltip" title="Delete invoice"><i class="fa fa-times"></i></a>
+        </div>
+        <%= f.hidden_field :venue_id, value: order.first.id %>
+        <h2><strong><%= order.first.name %></strong></h2>
       </div>
+        <div class="row block-section">
+          <div class="col-sm-12">
+            <h4><%= order.first.address.details %></h4>
+            <address>
+              <i class="fa fa-phone"></i><%= order.first.phone_number %><br>
+              <i class="fa fa-envelope-o"></i>
+              <a href="javascript:"><%= order.first.email %></a>
+            </address>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-vcenter bookings-table">
+            <tbody>
+              <% order.second.each do |booking| %>
+                <tr>
+                  <td>
+                    <h4><%= link_to booking.space.space_type.humanize,
+                      search_space_path(booking.space) %></h4>
+                    <%= content_tag(:span, l(booking.booking_from, format: :time_word),
+                      class: "label label-info") %>
+                    <span class="label label-info"><i class="fa fa-clock-o"></i>
+                    <%= pluralize(booking.duration, booking.booking_type.name.humanize) %>
+                    </span>
+                    <%= link_to booking_path(booking), method: :delete,
+                      class: "btn btn-xs btn-danger remove-booking-btn",
+                      data: {confirm: t(".confirm_delete"), toggle: "tooltip", "original-title": t("delete")} do %>
+                      <i class="fa fa-times"></i>
+                    <% end %>
+                  </td>
+                  <td class="text-center">
+                    <%= if booking.space.images.any? %>
+                      <%= image_tag booking.space.images.first.url,
+                        class: "image-default-size" %>
+                    <% else %>
+                      <%= image_tag "default/no-space-image.png",
+                        class: "image-default-size" %>
+                    <% end %>
+
+                  </td>
+                  <td class="text-center"><span class="label label-warning">Hot desk</span></td>
+                  <td class="text-center"><strong>x <span class="badge">1</strong></td>
+                  <td class="text-right"><span class="label label-success">$ 1.000</span></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td>
+                  <h4><%= link_to "Rapture Coffee", "javascript:" %></h4>
+                  <span class="label label-info">Thu, Oct 20, 2016</span>
+                  <span class="label label-info"><i class="fa fa-clock-o"></i> 3 weeks</span>
+                  <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </td>
+                <td class="text-center">
+                    <%= image_tag "spaces/space1.jpg", style: "width: 200px; height: 100px" %>
+                </td>
+                <td class="text-center"><span class="label label-warning">Hot desk</span></td>
+                <td class="text-center"><strong>x <span class="badge">1</strong></td>
+                <td class="text-right"><span class="label label-success">$ 1.000</span></td>
+              </tr>
+              <tr class="active">
+                <td colspan="4" class="text-right"><span class="h3">
+                  <strong><%= t ".total_due" %></strong></span></td>
+                <td class="text-right"><span class="h3"><strong>$ 28.750</strong></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="clearfix">
+          <div class="btn-group pull-right">
+            <%= f.submit t(".request"), class: "btn btn-danger" %>
+          </div>
+        </div>
     </div>
-    <div class="table-responsive">
-      <table class="table table-vcenter bookings-table">
-        <tbody>
-          <tr>
-            <td>
-                <h4><%= link_to "Rapture Coffee", "javascript:" %></h4>
-                <span class="label label-info">Thu, Oct 20, 2016</span>
-                <span class="label label-info"><i class="fa fa-clock-o"></i> 3 weeks</span>
-                <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </td>
-            <td class="text-center">
-                <%= image_tag "spaces/space1.jpg", style: "width: 200px; height: 100px" %>
-            </td>
-            <td class="text-center"><span class="label label-warning">Hot desk</span></td>
-            <td class="text-center"><strong>x <span class="badge">1</strong></td>
-            <td class="text-right"><span class="label label-success">$ 1.000</span></td>
-          </tr>
-          <tr>
-            <td>
-              <h4><%= link_to "Private Office", "javascript:" %></h4>
-              <span class="label label-info">Thu, Oct 20, 2016</span>
-              <span class="label label-info"><i class="fa fa-clock-o"></i> 1 month</span>
-              <a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger" data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </td>
-            <td class="text-center">
-              <%= image_tag "spaces/space1.jpg", style: "width: 200px; height: 100px" %>
-            </td>
-            <td class="text-center"><span class="label label-warning">Private Office</span></td>
-            <td class="text-center"><strong>x <span class="badge">2</strong></td>
-            <td class="text-right"><span class="label label-success">$ 1.000</span></td>
-          </tr>
-          <tr class="active">
-            <td colspan="4" class="text-right"><span class="h3">
-              <strong><%= t ".total_due" %></strong></span></td>
-            <td class="text-right"><span class="h3"><strong>$ 28.750</strong></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="clearfix">
-      <div class="btn-group pull-right">
-        <a href="javascript:" class="btn btn-danger"><i class="fa fa-angle-right"></i><%= t "request" %></a>
-      </div>
-    </div>
-</div>
+  <% end %>
+<% end %>
+
+

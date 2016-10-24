@@ -5,6 +5,7 @@ class CreateSpaces < ActiveRecord::Migration[5.0]
       t.integer :size, null: false
       t.integer :capicity, null: false
       t.integer :quantity, null: false
+      t.string :name, null: false
       t.text :description, null: false
       t.references :venue, index: true, foreign_key: true
 
